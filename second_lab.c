@@ -4,38 +4,31 @@
 #include <stdlib.h>
 #include <ctype.h>
 
+const int base = 100000000; // много, сделай поменьше
 
-const int base = 100000000;
-
-typedef struct
-{
+typedef struct {
     int a[40];
 } uint1024_t;
  
- uint1024_t from_uint(unsigned int x)
-{
+ uint1024_t from_uint(unsigned int x) {
     uint1024_t b;
     int i = 0;
-    if (x == 0)
-    {
+	 
+    if (x == 0) {
         b.a[i] = 0;
         i++;
-        while (i != 40)
-        {
+        while (i != 40) {
             b.a[i] = -1;
             i++;
         }
     }
     else
-        while (i != 40)
-        {
-            if (x != 0)
-            {
+        while (i != 40) {
+            if (x != 0) {
                 b.a[i] = x % base;
                 x /= base;
             }
-            else 
-            {
+            else {
                 b.a[i] = -1;  
             }
             i++;
@@ -95,7 +88,7 @@ uint1024_t subtr_op(uint1024_t x, uint1024_t y)
             }
             else
             {
-                x.a[i] += 99999999;
+                x.a[i] += 9999; // уменьшил
             }
         }
         if (x.a[i] != -1 && y.a[i] != -1)
@@ -246,6 +239,9 @@ int main()
     printf_value(subtr_op(a, b));
     printf("\namount: ");
     printf_value(add_op(a, b));
+	  // хороший код
+	 // молодец
+	// сделал красиво
     return 0;
 }
 
